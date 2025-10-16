@@ -1,7 +1,13 @@
 import requests
+from cachetools import cached, TTLCache
+import time
+
+ttl_cache = TTLCache(maxsize=100, ttl=3*60*60)
 
 
+@cached(ttl_cache)
 def get_exchange_rate(base_currency, target_currency):
+    time.sleep(2)
     url = f"https://v6.exchangerate-api.com/v6/fcbf69001983b522b05841fc/latest/{base_currency}"
     response = requests.get(url)
     if response.status_code != 200 :
