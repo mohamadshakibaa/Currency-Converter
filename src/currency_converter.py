@@ -14,6 +14,7 @@ def get_exchange_rate(base_currency, target_currency):
         return None
     return response.json()['conversion_rates'][target_currency]
 
+
 def convert_currency(amount, exchahge_rate):
     return amount * exchahge_rate
 
